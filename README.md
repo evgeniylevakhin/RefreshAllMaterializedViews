@@ -12,16 +12,31 @@ I decided to write my own function.
 Usage
 -----
 
-To refresh views in `public` schema:
+The function has two optional parameters, _schema and _concurrently.
+The default is all schemas for _schema and false for _concurrently.
+
+To refresh views in all schemas, not concurrently:
 ```sql
 select RefreshAllMaterializedViews();
-select RefreshAllMaterializedViewsConcurrently();
+select RefreshAllMaterializedViews('*');
+select RefreshAllMaterializedViews('*', false);
 ```
 
-To refresh views in other schema:
+To refresh views in other schema, not concurrently:
 ```sql
 select RefreshAllMaterializedViews('my_schema');
-select RefreshAllMaterializedViewsConcurrently('my_schema');
+select RefreshAllMaterializedViews('my_schema', false);
 ```
+
+To refresh views in all schemas concurrently:
+```sql
+select RefreshAllMaterializedViews('*', true);
+```
+
+To refresh views in other schema concurrently:
+```sql
+select RefreshAllMaterializedViews('my_schema', true);
+```
+
 
 Note: If you created the materialized view ```WITH NO DATA``` you have'll have to first populate the Materialized Views with RefreshAllMaterializedViews() before you can use the concurrent version.
