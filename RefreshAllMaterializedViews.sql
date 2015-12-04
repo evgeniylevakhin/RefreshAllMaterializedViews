@@ -7,7 +7,7 @@ RETURNS INT AS $$
   DECLARE
     r RECORD;
   BEGIN
-    RAISE NOTICE 'Refreshing materialized view(s) in % %', CASE WHEN _schema = '*' THEN ' all schemas' ELSE 'schema "'|| _schema || '"' END, CASE WHEN _concurrently THEN 'concurrently' ELSE '' END;
+    RAISE NOTICE 'Refreshing materialized view(s) in % %', CASE WHEN _schema = '*' THEN 'all schemas' ELSE 'schema "'|| _schema || '"' END, CASE WHEN _concurrently THEN 'concurrently' ELSE '' END;
     IF pg_is_in_recovery() THEN 
       RETURN 0;
     ELSE    
