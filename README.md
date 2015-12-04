@@ -22,7 +22,7 @@ select RefreshAllMaterializedViews('*');
 select RefreshAllMaterializedViews('*', false);
 ```
 
-To refresh views in other schema, not concurrently:
+To refresh views in one schema, not concurrently:
 ```sql
 select RefreshAllMaterializedViews('my_schema');
 select RefreshAllMaterializedViews('my_schema', false);
@@ -33,7 +33,7 @@ To refresh views in all schemas concurrently:
 select RefreshAllMaterializedViews('*', true);
 ```
 
-To refresh views in other schema concurrently:
+To refresh views in one schema concurrently:
 ```sql
 select RefreshAllMaterializedViews('my_schema', true);
 ```
