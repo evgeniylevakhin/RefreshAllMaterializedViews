@@ -13,7 +13,7 @@ RETURNS INT AS $$
     ELSE    
       FOR r IN SELECT schemaname, matviewname FROM pg_matviews WHERE schemaname = _schema OR _schema = '*' 
       LOOP
-        RAISE NOTICE 'Refreshing "%"."%"', r.schemaname, r.matviewname;
+        RAISE NOTICE 'Refreshing materialized view "%"."%"', r.schemaname, r.matviewname;
         EXECUTE 'REFRESH MATERIALIZED VIEW ' || CASE WHEN _concurrently THEN 'CONCURRENTLY ' ELSE '' END || '"' || r.schemaname || '"."' || r.matviewname || '"'; 
       END LOOP;
     END IF;
